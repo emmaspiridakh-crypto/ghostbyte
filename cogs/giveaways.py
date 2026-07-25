@@ -472,7 +472,7 @@ class Giveaways(commands.Cog):
                         try:
                             await member.send(
                                 f"🎉 Κέρδισες **{prize}** στον server **{guild.name}**! "
-                                f"Επικοινώνησε με τον δημιουργό του giveaway ή άνοιξε ένα ticket για να λάβεις το έπαθλο σου."
+                                f"Επικοινώνησε με τον δημιουργό του giveaway για να λάβεις το έπαθλο σου."
                             )
                         except discord.Forbidden:
                             pass

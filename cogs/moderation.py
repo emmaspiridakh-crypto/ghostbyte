@@ -70,7 +70,7 @@ class Moderation(commands.Cog):
         try:
             await member.ban(reason=f"{reason} | by {ctx.author}")
         except discord.Forbidden:
-            await ctx.reply("⚠️ Δεν έχω δικαίωμα να κάνω ban αυτόν τον χρήστη.")
+            await ctx.reply("⚠️ Δεν έχεις δικαίωμα να κάνεις ban αυτόν τον χρήστη.")
             return
         await ctx.reply(f"✅ Ο/Η {member.mention} έγινε banned.")
         await logutil.log(
@@ -95,7 +95,7 @@ class Moderation(commands.Cog):
             await ctx.reply("⚠️ Δεν βρέθηκε banned χρήστης με αυτό το ID.")
             return
         except discord.Forbidden:
-            await ctx.reply("⚠️ Δεν έχω δικαίωμα να κάνω unban.")
+            await ctx.reply("⚠️ Δεν έχεις δικαίωμα να κάνεις unban.")
             return
         await ctx.reply(f"✅ Ο/Η {user.mention} έγινε unbanned.")
         await logutil.log(
@@ -122,7 +122,7 @@ class Moderation(commands.Cog):
         try:
             await member.timeout(delta, reason=f"{reason} | by {ctx.author}")
         except discord.Forbidden:
-            await ctx.reply("⚠️ Δεν έχω δικαίωμα να κάνω timeout αυτόν τον χρήστη.")
+            await ctx.reply("⚠️ Δεν έχεις δικαίωμα να κάνεις timeout αυτόν τον χρήστη.")
             return
         until = discord.utils.utcnow() + delta
         await ctx.reply(f"✅ Ο/Η {member.mention} πήρε timeout μέχρι {discord.utils.format_dt(until, style='R')}.")
@@ -168,7 +168,7 @@ class Moderation(commands.Cog):
         try:
             await member.kick(reason=f"{reason} | by {ctx.author}")
         except discord.Forbidden:
-            await ctx.reply("⚠️ Δεν έχω δικαίωμα να κάνω kick αυτόν τον χρήστη.")
+            await ctx.reply("⚠️ Δεν έχεις δικαίωμα να κάνεις kick αυτόν τον χρήστη.")
             return
         await ctx.reply(f"✅ Ο/Η {member.mention} έγινε kicked.")
         await logutil.log(
@@ -188,7 +188,7 @@ class Moderation(commands.Cog):
     @commands.command(name="dmall")
     @ceo_only()
     async def dmall_cmd(self, ctx: commands.Context, *, message: str):
-        await ctx.reply(f"📨 Ξεκινάει η αποστολή DM σε {ctx.guild.member_count} μέλη... (μπορεί να πάρει ώρα)")
+        await ctx.reply(f"📨 Ξεκινάει η αποστολή DM σε {ctx.guild.member_count} μέλη")
         sent, failed = 0, 0
         for member in ctx.guild.members:
             if member.bot:

@@ -15,9 +15,9 @@ GUILD_ID = 1530224287808491642  # το ID του server σου (βοηθάει �
 
 # ── Ρόλοι / Staff ────────────────────────────────────────────────────────────
 OWNERSHIP_ROLE_ID = 1530828899280355532          # μπορεί /giveaway create, /giveaway list, delete
-MANAGER_ROLE_ID = 1530828899280355532            # μπορεί /giveaway create
-CEO_ROLE_ID = 1530230296023142421                # ban/unban/timeout/untimeout/kick/dmall/say/say2, partnership+buy tickets
-COCEO_ROLE_ID = 1530230318626377860              # ίδια δικαιώματα με CEO
+MANAGER_ROLE_ID = 1530828899280355532          # μπορεί /giveaway create
+CEO_ROLE_ID = 1530828899280355532                # ban/unban/timeout/untimeout/kick/dmall/say/say2, partnership+buy tickets
+COCEO_ROLE_ID = 1530828899280355532              # ίδια δικαιώματα με CEO
 STAFF_TEAM_ROLE_IDS = [1530828899280355532]      # γενικό staff -> βλέπει owner/contact/support/seller tickets, μπορεί close/ping ticket
 MOD_ROLE_IDS = [CEO_ROLE_ID, COCEO_ROLE_ID]  # roles που μπορούν τα mod commands
 

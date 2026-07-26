@@ -49,7 +49,7 @@ EMOJIS = {
     },
     "tos": {
         "document": "<:document:1530909736537690205>",
-        "exchange": "<:exchange:1530692764852027574>",
+        "exchange": "<a:exchange:1530692764852027574>",
     },
     "logs": {
         "voice_join": "<a:voice_join:1530489063662944336>",

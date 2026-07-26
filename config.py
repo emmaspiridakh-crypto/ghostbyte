@@ -61,6 +61,7 @@ TICKET_TYPES = {
         "emoji": "🛒",
         "category_id": 1530588363118215219,
         "viewer_role_ids": [CEO_ROLE_ID, COCEO_ROLE_ID],
+    },
 }
 
 # ── Welcome ──────────────────────────────────────────────────────────────────

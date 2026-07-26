@@ -36,12 +36,12 @@ def build_tos_panel() -> ui.LayoutView:
         accessory=ui.Button(
             label="Terms Of Service",
             style=discord.ButtonStyle.secondary,
-            emoji=emoji("ticket", "category") or "📋",
+            emoji=emoji("tos", "document") or "📋",
             custom_id=TOS_BTN_ID,
         )
     )
     tos_section.add_item(ui.TextDisplay(
-        "**📋 Όροι Χρήσης (TOS)**\n"
+        f"**{emoji('tos', 'document') or '📋'} Όροι Χρήσης (TOS)**\n"
         "• Πατήστε το παρακάτω κουμπί για να διαβάσετε τα ToS."
     ))
     container.add_item(tos_section)
@@ -50,12 +50,12 @@ def build_tos_panel() -> ui.LayoutView:
         accessory=ui.Button(
             label="Exchange TOS",
             style=discord.ButtonStyle.secondary,
-            emoji="🔄",
+            emoji=emoji("tos", "exchange") or "🔄",
             custom_id=EXCHANGE_BTN_ID,
         )
     )
     exchange_section.add_item(ui.TextDisplay(
-        "**🔄 Exchange TOS**\n"
+        f"**{emoji('tos', 'exchange') or '🔄'} Exchange TOS**\n"
         "• Πατήστε το παρακάτω κουμπί για να διαβάσετε τα Exchange ToS."
     ))
     container.add_item(exchange_section)

@@ -334,7 +334,7 @@ class Giveaways(commands.Cog):
         return view
 
     def build_info_panel(self, gw: dict) -> ui.LayoutView:
-        container = ui.Container(accent_colour=discord.Colour.blurple())
+        container = ui.Container(accent_colour=discord.Colour.blue())
         container.add_item(ui.TextDisplay(
             f"## {emoji('giveaway','info')} Giveaway Management\n"
             f"**ID:** `#{gw['id']}` | **Έπαθλο:** {gw['prize']}\n"

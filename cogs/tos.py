@@ -65,11 +65,9 @@ def build_tos_panel() -> ui.LayoutView:
     return view
 
 
-def build_text_view(text_el: str, text_en: str) -> ui.LayoutView:
+def build_text_view(text: str) -> ui.LayoutView:
     container = ui.Container(accent_colour=discord.Colour.blue())
-    container.add_item(ui.TextDisplay(text_el))
-    container.add_item(ui.Separator(spacing=discord.SeparatorSpacing.small))
-    container.add_item(ui.TextDisplay(text_en))
+    container.add_item(ui.TextDisplay(text))
     view = ui.LayoutView(timeout=None)
     view.add_item(container)
     return view
@@ -91,11 +89,11 @@ class TermsOfService(commands.Cog):
         custom_id: str = interaction.data.get("custom_id", "")
 
         if custom_id == TOS_BTN_ID:
-            view = build_text_view(config.TOS_TEXT_EL, config.TOS_TEXT_EN)
-            await interaction.response.send_message(view=view, ephemeral=True)
+            await interaction.response.send_message(view=build_text_view(config.TOS_TEXT_EL), ephemeral=True)
+            await interaction.followup.send(view=build_text_view(config.TOS_TEXT_EN), ephemeral=True)
         elif custom_id == EXCHANGE_BTN_ID:
-            view = build_text_view(config.EXCHANGE_TOS_TEXT_EL, config.EXCHANGE_TOS_TEXT_EN)
-            await interaction.response.send_message(view=view, ephemeral=True)
+            await interaction.response.send_message(view=build_text_view(config.EXCHANGE_TOS_TEXT_EL), ephemeral=True)
+            await interaction.followup.send(view=build_text_view(config.EXCHANGE_TOS_TEXT_EN), ephemeral=True)
 
 
 async def setup(bot: commands.Bot):

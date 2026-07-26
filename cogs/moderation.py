@@ -8,8 +8,9 @@ Prefix (!) commands για CEO / CO-CEO:
   !untimeout <@user>
   !kick <@user> [λόγος]
   !dmall <μήνυμα>            (μόνο CEO — στέλνει DM σε όλα τα members)
-  !say <#channel> <μήνυμα>   (panel με thumbnail)
-  !say2 <#channel> <τίτλος> | <μήνυμα>  (panel με thumbnail, με τίτλο)
+  !say <μήνυμα>              (panel με thumbnail, στο τρέχον channel)
+  !say2 <τίτλος> | <μήνυμα>  (panel με thumbnail, με τίτλο, στο τρέχον channel)
+  !clearmessage <αριθμός>    (Ownership μόνο — διαγράφει Ν μηνύματα από το channel)
 
 Όλα καταγράφονται σε logs (ξεχωριστό channel ανά κατηγορία).
 """
@@ -43,6 +44,14 @@ def ceo_only():
         if not isinstance(ctx.author, discord.Member):
             return False
         return has_roles(ctx.author, [config.CEO_ROLE_ID])
+    return commands.check(predicate)
+
+
+def ownership_only():
+    async def predicate(ctx: commands.Context) -> bool:
+        if not isinstance(ctx.author, discord.Member):
+            return False
+        return has_roles(ctx.author, [config.OWNERSHIP_ROLE_ID])
     return commands.check(predicate)
 
 
@@ -217,7 +226,9 @@ class Moderation(commands.Cog):
 
     @commands.command(name="say")
     @mod_only()
-    async def say_cmd(self, ctx: commands.Context, channel: discord.TextChannel, *, message: str):
+    async def say_cmd(self, ctx: commands.Context, *, message: str):
+        channel = ctx.channel
+
         container = ui.Container(accent_colour=discord.Colour.blurple())
         thumb = ctx.guild.icon.url if ctx.guild.icon else None
         if thumb:
@@ -249,9 +260,10 @@ class Moderation(commands.Cog):
 
     @commands.command(name="say2")
     @mod_only()
-    async def say2_cmd(self, ctx: commands.Context, channel: discord.TextChannel, *, payload: str):
+    async def say2_cmd(self, ctx: commands.Context, *, payload: str):
+        channel = ctx.channel
         if "|" not in payload:
-            await ctx.reply("⚠️ Χρήση: `!say2 #channel Τίτλος | Μήνυμα`")
+            await ctx.reply("⚠️ Χρήση: `!say2 Τίτλος | Μήνυμα`")
             return
         title, message = (p.strip() for p in payload.split("|", 1))
 
@@ -286,6 +298,48 @@ class Moderation(commands.Cog):
             ],
         )
 
+    # ── Clear Messages (Ownership μόνο) ──────────────────────────────────────
+
+    @commands.command(name="clearmessage", aliases=["clear", "purge"])
+    @ownership_only()
+    async def clearmessage_cmd(self, ctx: commands.Context, amount: int):
+        if amount < 1:
+            await ctx.reply("⚠️ Ο αριθμός πρέπει να είναι τουλάχιστον 1.")
+            return
+        if amount > 500:
+            await ctx.reply("⚠️ Μέγιστο 500 μηνύματα ανά χρήση.")
+            return
+
+        try:
+            # +1 ώστε να σβήσει και το ίδιο το μήνυμα της εντολής
+            deleted = await ctx.channel.purge(limit=amount + 1)
+        except discord.Forbidden:
+            await ctx.reply("⚠️ Δεν έχω δικαίωμα να διαγράψω μηνύματα σε αυτό το channel.")
+            return
+        except discord.HTTPException as e:
+            await ctx.reply(f"⚠️ Σφάλμα κατά τη διαγραφή: {e}")
+            return
+
+        cleared = max(len(deleted) - 1, 0)
+        confirm = await ctx.send(f"🧹 Διαγράφηκαν {cleared} μηνύματα.")
+
+        await logutil.log(
+            ctx.guild, "mod",
+            title=f"{emoji('mod', 'clear') or '🧹'} Clear Messages",
+            color=0x5865F2,
+            fields=[
+                ("Από", ctx.author.mention, True),
+                ("Channel", ctx.channel.mention, True),
+                ("Ποσότητα", str(cleared), True),
+            ],
+        )
+
+        await asyncio.sleep(4)
+        try:
+            await confirm.delete()
+        except discord.HTTPException:
+            pass
+
     # ── Error handling (καλύπτει όλες τις εντολές αυτού του cog) ────────────
 
     @commands.Cog.listener()
@@ -300,6 +354,8 @@ class Moderation(commands.Cog):
             await ctx.reply(f"⚠️ Λείπει παράμετρος: `{error.param.name}`")
         elif isinstance(error, commands.ChannelNotFound):
             await ctx.reply("⚠️ Δεν βρέθηκε αυτό το channel.")
+        elif isinstance(error, commands.BadArgument):
+            await ctx.reply("⚠️ Λάθος τύπος παραμέτρου (π.χ. ο αριθμός στο `!clearmessage` πρέπει να είναι νούμερο).")
         else:
             await ctx.reply(f"⚠️ Σφάλμα: {error}")
 

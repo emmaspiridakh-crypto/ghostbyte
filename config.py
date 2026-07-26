@@ -38,37 +38,29 @@ TICKET_TYPES = {
         "label_el": "Owner", "label_en": "Owner",
         "desc_el": "Επικοινωνία με τον owner", "desc_en": "Contact the owner",
         "emoji": "👑",
-        "category_id": 0,
+        "category_id": 1530588297385218126,
         "viewer_role_ids": STAFF_TEAM_ROLE_IDS,
     },
     "contact_support": {
         "label_el": "Επικοινωνία / Support", "label_en": "Contact / Support",
         "desc_el": "Γενική βοήθεια & ερωτήσεις", "desc_en": "General help & questions",
         "emoji": "🛠️",
-        "category_id": 0,
+        "category_id": 1530588440973017188,
         "viewer_role_ids": STAFF_TEAM_ROLE_IDS,
     },
     "partnership": {
         "label_el": "Partnership", "label_en": "Partnership",
         "desc_el": "Προτάσεις συνεργασίας", "desc_en": "Partnership proposals",
         "emoji": "🤝",
-        "category_id": 0,
+        "category_id": 1530588673727529160,
         "viewer_role_ids": [CEO_ROLE_ID, COCEO_ROLE_ID],
     },
     "buy": {
         "label_el": "Αγορά", "label_en": "Buy",
         "desc_el": "Αγορά προϊόντος", "desc_en": "I want to buy something",
         "emoji": "🛒",
-        "category_id": 0,
+        "category_id": 1530588363118215219,
         "viewer_role_ids": [CEO_ROLE_ID, COCEO_ROLE_ID],
-    },
-    "seller": {
-        "label_el": "Seller", "label_en": "Seller",
-        "desc_el": "Θέμα σχετικό με πωλητή", "desc_en": "Seller related matter",
-        "emoji": "💼",
-        "category_id": 0,
-        "viewer_role_ids": STAFF_TEAM_ROLE_IDS,
-    },
 }
 
 # ── Welcome ──────────────────────────────────────────────────────────────────
@@ -114,19 +106,134 @@ TOS_BANNER_URL = "https://i.imgur.com/YSKTluU.jpeg"
 
 TOS_TEXT_EL = (
     f"## 📋 Όροι Χρήσης — {SHOP_NAME}\n"
-    "Συμπλήρωσε εδώ το πλήρες κείμενο των Terms of Service στα Ελληνικά."
+    "Οι κανόνες μπορούν να αλλάξουν ανά πάσα ώρα και στιγμή. Εσείς οι ίδιοι είστε υποχρεωμένοι να διαβάζετε τους κανόνες συστηματικά",
+
+    "Οι τιμές και οι όροι μπορούν να αλλάξουν ανά πάσα στιγμή χωρίς προηγούμενη ειδοποίηση.",
+
+    "Διατηρούμε το δικαίωμα να αρνηθούμε την παροχή οποιασδήποτε υπηρεσίας σε οποιονδήποτε, οποτεδήποτε.",
+
+    "Με την πραγματοποίηση αγοράς, θεωρείται ότι έχετε διαβάσει, κατανοήσει και αποδεχτεί πλήρως τους όρους χρήσης. Η άγνοια των όρων δεν αποτελεί δικαιολογία.",
+
+    "Μετά την ολοκλήρωση κάθε παραγγελίας, η κατάθεση vouch στο αντίστοιχο κανάλι είναι υποχρεωτική. Σε αντίθετη περίπτωση, ενδέχεται να σας απαγορευτεί η μελλοντική χρήση των υπηρεσιών μας.",
+
+    "Οποιεσδήποτε κατηγορίες περί scam (απάτης) χωρίς τα απαραίτητα και ξεκάθαρα αποδεικτικά στοιχεία οδηγούν σε άμεσο και μόνιμο αποκλεισμό (Permanent Ban) από τον διακομιστή.",
+
+    "Αν κάποιος seller/maker/exchanger κάνει exit scam δεν θα υπάρξει refund από το ownership team εκτός αν έρθουμε σε επικοινωνία με τον seller/maker/exchanger και επιστρέψει ο ίδιος το προϊόν ή τα χρήματα",
+
+    "Για κάθε αγορά που κάνετε είστε υποχρεωμένοι να έχετε κάποιο clip από όλη την συναλλαγή",
+
+    "Δεν αποδεχόμαστε αγορές για τρίτους πέρα από reselling. Ομως από την στιγμή που δώσουμε το προϊόν και είναι εντάξει, από εκεί και πέρα είναι δική σας ευθύνη για ό,τι συμβεί στο προϊόν",
+
+    "Οι παραπάνω κανόνες ισχύουν και για τα exchange t0s"
 )
 TOS_TEXT_EN = (
     f"## 📋 Terms of Service — {SHOP_NAME}\n"
-    "Fill in the full Terms of Service text in English here."
+    "These terms may be updated at any time without notice. You are responsible for reviewing them periodically.",
+    
+    "Prices and terms may be changed at any time without prior notice.",
+
+    "We reserve the right to refuse service to anyone, at any time.",
+
+    "By making a purchase, you acknowledge that you have read, understood, and fully accepted the Terms of Service. Ignorance of the terms does not constitute an excuse.",
+
+    "After the completion of every order, leaving a vouch in the designated channel is mandatory. Failure to do so may result in restrictions on your future use of our services.",
+
+    "Any accusations of scamming without clear and sufficient evidence will result in an immediate and permanent ban from the server.",
+
+    "If any seller/maker/exchanger performs an exit scam, no refund will be provided by the ownership team unless we are able to contact the seller/maker/exchanger and they personally return the product or issue a refund.",
+
+    "For any product that you buy you are required to have a clip of the whole transaction",
+
+    "We don’t accept third party purchases. Only for reselling but as soon as we deliver the product and it’s okay, from then t’s your fault if something happens to the product",
+
+    "These terms are also included in the exchange t0s"
 )
 EXCHANGE_TOS_TEXT_EL = (
     f"## 🔄 Όροι Ανταλλαγής (Exchange TOS) — {SHOP_NAME}\n"
-    "Συμπλήρωσε εδώ το πλήρες κείμενο των Exchange ToS στα Ελληνικά."
+"Τα χρήματα πρέπει να σταλθούν στο σωστό email και επίσης να τσεκάρετε το email που στείλατε για να λάβετε τα χρήματα. Είστε υποχρεωμένοι να διπλό τσεκάρετε το email που σας έχει στείλει ο exchanger και το email που στείλατε.",
+
+"Σε περίπτωση που στείλετε παραπάνω χρήματα ο exchanger δεν είναι αναγκασμένος να επιστρέψει το extra ποσό.",
+
+\nn**"PayPal Rules"**,
+
+"Τα χρήματα πρέπει να σταλθούν Friends & Family εκτός αν έχει υπάρξει συννενόηση με τον exchanger",
+
+"Τα χρήματα πρέπει να σταλθούν από το PayPal Balance εκτός αν έχει υπάρξει συννενόηση με τον exchanger.",
+
+"Τα λεφτά πρέπει να σταλθούν στο συνεννοημένο νόμισμα",
+
+"Η συναλλαγή πρέπει να γίνει χωρίς κάποια notes στην PayPal.",
+
+\nn**"Crypto"**,
+
+"Τα χρήματα πρέπει να σταλθούν στο κρυπτονομισμα στο οποίο έχει συνεννοηθεί με τον exchanger.",
+
+"Το TXID είναι υποχρεωτικό μετά από κάθε συναλλαγή.",
+
+"Τα χρήματα πρέπει να σταλθούν στο σωστό addy (wallet)",
+
+\nn**"Paysafe Rules"**,
+
+"Ο κωδικός/qr της Paysafe πρέπει να σταλθεί σε προσωπικό μήνυμα(dm). Σε περίπτωση που σταλθεί σε κάποιο κανάλι το οποίο έχουν access και άλλα άτομα και η paysafe χρησιμοποιηθεί από κάποιον άλλον ο exchanger δεν είναι υποχρεωμένος να επιστρέψει κάποια χρήματα.",
+
+"Οι κωδικοί της Paysafe πρέπει να είναι αχρησιμοποίητοι.",
+
+\nn**"Περιορισμός Ευθύνης"**,
+
+"Ο exchanger δεν φέρει καμία ευθύνη για τυχόν απώλειες που προκύπτουν από αμέλεια ή σφάλμα του χρήστη, συμπεριλαμβανομένων ενδεικτικά αλλά όχι περιοριστικά λανθασμένων στοιχείων πληρωμής, εσφαλμένων διευθύνσεων πορτοφολιού (wallet addresses), λανθασμένου νομίσματος, μη εξουσιοδοτημένης κοινοποίησης κωδικών πληρωμής ή μη συμμόρφωσης με τους παρόντες Όρους Χρήσης.",
+
+**"Με την πραγματοποίηση οποιασδήποτε συναλλαγής ανταλλαγής, ο χρήστης αναγνωρίζει και αποδέχεται πλήρως όλους τους κινδύνους που σχετίζονται με τη μέθοδο πληρωμής που επιλέγει να χρησιμοποιήσει."**\nn
+
+    
 )
 EXCHANGE_TOS_TEXT_EN = (
     f"## 🔄 Exchange Terms of Service — {SHOP_NAME}\n"
-    "Fill in the full Exchange ToS text in English here."
+    "All parties are solely responsible for verifying the accuracy of the recipient’s email address, wallet address, or any other payment details before initiating a transaction.",
+
+    "Users are required to double-check both the payment information provided by the exchanger and the payment information they submit for receiving funds.",
+
+    "In the event that a user sends funds in excess of the agreed amount, the exchanger shall not be obligated to refund or return any excess funds.",
+
+    "Once a transaction has been completed and confirmed, it shall be considered final unless otherwise agreed by both parties.",
+
+    \nn**"PayPal Transactions"**,
+
+    "Unless explicitly agreed otherwise, all PayPal payments must be sent using the Friends & Family payment method.",
+
+    "Unless explicitly agreed otherwise, all PayPal payments must be funded directly from the sender’s PayPal Balance.",
+
+    "Payments must be sent in the currency mutually agreed upon prior to the transaction.",
+
+    "No notes, comments, references, or descriptions may be included in the PayPal transaction unless specifically authorized by the exchanger.",
+
+    "Failure to comply with any PayPal-related requirements may result in delays, cancellation of the exchange, or refusal of service.",
+
+    \nn**"Cryptocurrency Transactions"**,
+
+    "Funds must be sent exclusively in the cryptocurrency agreed upon by both parties prior to the transaction.",
+
+    "The sender must provide a valid Transaction ID (TXID) immediately after the transaction has been broadcast to the blockchain.",
+
+    "The sender is solely responsible for ensuring that funds are sent to the correct wallet address.",
+
+    "Cryptocurrency transactions are irreversible. Any loss resulting from an incorrect wallet address, incorrect network selection, or user error shall be the sole responsibility of the sender.",
+
+     \nn**"Paysafecard Transactions"**,
+
+    "Paysafecard PINs, codes, or QR codes must be transmitted exclusively through private/direct messages (DMs).",
+
+    "If a Paysafecard code is shared in a public channel or any location accessible to third parties and is subsequently redeemed by another individual, the exchanger shall bear no liability and shall not be obligated to provide compensation or reimbursement.",
+
+    "All Paysafecard codes submitted for exchange must be valid, unused, and unredeemed at the time of submission.",
+
+    "Any used, invalid, partially redeemed, or otherwise compromised Paysafecard code may be rejected at the exchanger’s sole discretion.",
+
+     \nn**"Limitation of Liability"**,
+
+    "The exchanger shall not be held liable for losses resulting from user negligence, including but not limited to incorrect payment information, incorrect wallet addresses, incorrect currencies, unauthorized disclosure of payment codes, or failure to follow these Terms of Service.",
+
+    **"By proceeding with an exchange, the user acknowledges and accepts all risks associated with the chosen payment method."**\nn
+
 )
 
 # ── Keep-alive (Render) ──────────────────────────────────────────────────────

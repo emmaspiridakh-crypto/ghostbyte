@@ -8,8 +8,8 @@ Prefix (!) commands για CEO / CO-CEO:
   !untimeout <@user>
   !kick <@user> [λόγος]
   !dmall <μήνυμα>            (μόνο CEO — στέλνει DM σε όλα τα members)
-  !say <μήνυμα>              (panel με thumbnail, στο τρέχον channel)
-  !say2 <τίτλος> | <μήνυμα>  (panel με thumbnail, με τίτλο, στο τρέχον channel)
+  !say <μήνυμα>              (απλό μήνυμα, στο τρέχον channel)
+  !say2 <μήνυμα>             (panel με thumbnail, στο τρέχον channel)
   !clearmessage <αριθμός>    (Ownership μόνο — διαγράφει Ν μηνύματα από το channel)
 
 Όλα καταγράφονται σε logs (ξεχωριστό channel ανά κατηγορία).
@@ -229,6 +229,29 @@ class Moderation(commands.Cog):
     async def say_cmd(self, ctx: commands.Context, *, message: str):
         channel = ctx.channel
 
+        try:
+            await channel.send(message)
+        except discord.HTTPException:
+            await ctx.reply("⚠️ Δεν μπόρεσα να στείλω το μήνυμα σε αυτό το channel.")
+            return
+
+        await ctx.message.delete()
+        await logutil.log(
+            ctx.guild, "mod",
+            title=f"{emoji('mod', 'say') or '📢'} Say Used",
+            color=0x5865F2,
+            fields=[
+                ("Από", ctx.author.mention, True),
+                ("Channel", channel.mention, True),
+                ("Μήνυμα", message[:500], False),
+            ],
+        )
+
+    @commands.command(name="say2")
+    @mod_only()
+    async def say2_cmd(self, ctx: commands.Context, *, message: str):
+        channel = ctx.channel
+
         container = ui.Container(accent_colour=discord.Colour.blurple())
         thumb = ctx.guild.icon.url if ctx.guild.icon else None
         if thumb:
@@ -249,51 +272,11 @@ class Moderation(commands.Cog):
         await ctx.message.delete()
         await logutil.log(
             ctx.guild, "mod",
-            title=f"{emoji('mod', 'say') or '📢'} Say Used",
-            color=0x5865F2,
-            fields=[
-                ("Από", ctx.author.mention, True),
-                ("Channel", channel.mention, True),
-                ("Μήνυμα", message[:500], False),
-            ],
-        )
-
-    @commands.command(name="say2")
-    @mod_only()
-    async def say2_cmd(self, ctx: commands.Context, *, payload: str):
-        channel = ctx.channel
-        if "|" not in payload:
-            await ctx.reply("⚠️ Χρήση: `!say2 Τίτλος | Μήνυμα`")
-            return
-        title, message = (p.strip() for p in payload.split("|", 1))
-
-        container = ui.Container(accent_colour=discord.Colour.blurple())
-        thumb = ctx.guild.icon.url if ctx.guild.icon else None
-        text = f"## {title}\n{message}"
-        if thumb:
-            section = ui.Section(accessory=ui.Thumbnail(media=thumb))
-            section.add_item(ui.TextDisplay(text))
-            container.add_item(section)
-        else:
-            container.add_item(ui.TextDisplay(text))
-
-        view = ui.LayoutView(timeout=None)
-        view.add_item(container)
-        try:
-            await channel.send(view=view)
-        except discord.HTTPException:
-            await ctx.reply("⚠️ Δεν μπόρεσα να στείλω το μήνυμα σε αυτό το channel.")
-            return
-
-        await ctx.message.delete()
-        await logutil.log(
-            ctx.guild, "mod",
             title=f"{emoji('mod', 'say') or '📢'} Say2 Used",
             color=0x5865F2,
             fields=[
                 ("Από", ctx.author.mention, True),
                 ("Channel", channel.mention, True),
-                ("Τίτλος", title, False),
                 ("Μήνυμα", message[:500], False),
             ],
         )

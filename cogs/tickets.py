@@ -66,7 +66,7 @@ def _lang_label(ticket_type: dict, lang: str) -> str:
 
 
 def build_lang_panel() -> ui.LayoutView:
-    container = ui.Container(accent_colour=discord.Colour.blurple())
+    container = ui.Container(accent_colour=discord.Colour.blue())
     if config.TICKET_LANG_BANNER_URL:
         container.add_item(ui.MediaGallery(discord.MediaGalleryItem(media=config.TICKET_LANG_BANNER_URL)))
     container.add_item(ui.TextDisplay(
@@ -91,7 +91,7 @@ def build_lang_panel() -> ui.LayoutView:
 
 def build_category_panel(lang: str) -> ui.LayoutView:
     t = TEXT[lang]
-    container = ui.Container(accent_colour=discord.Colour.blurple())
+    container = ui.Container(accent_colour=discord.Colour.blue())
 
     if config.TICKET_PANEL_BANNER_URL:
         container.add_item(ui.MediaGallery(discord.MediaGalleryItem(media=config.TICKET_PANEL_BANNER_URL)))

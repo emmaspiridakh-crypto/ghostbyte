@@ -31,6 +31,13 @@ def get_client() -> libsql_client.Client:
             raise RuntimeError(
                 "Λείπουν τα TURSO_DATABASE_URL / TURSO_AUTH_TOKEN environment variables."
             )
+        # Χρησιμοποιούμε HTTP transport (https://) αντί για websocket (libsql://).
+        # Το websocket (Hrana) transport σκάει με "WSServerHandshakeError: 400"
+        # σε αρκετά setups/regions (π.χ. Render containers) — το HTTP transport
+        # είναι σταθερότερο και ταιριάζει καλύτερα με βραχύβιες/serverless-like
+        # συνδέσεις όπως αυτή.
+        if url.startswith("libsql://"):
+            url = "https://" + url[len("libsql://"):]
         _client = libsql_client.create_client(url=url, auth_token=token)
     return _client
 

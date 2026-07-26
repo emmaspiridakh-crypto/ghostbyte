@@ -24,7 +24,7 @@ EXCHANGE_BTN_ID = "tos_view:exchange"
 
 
 def build_tos_panel() -> ui.LayoutView:
-    container = ui.Container(accent_colour=discord.Colour.orange())
+    container = ui.Container(accent_colour=discord.Colour.blue())
 
     if config.TOS_BANNER_URL:
         container.add_item(ui.MediaGallery(discord.MediaGalleryItem(media=config.TOS_BANNER_URL)))
@@ -66,7 +66,7 @@ def build_tos_panel() -> ui.LayoutView:
 
 
 def build_text_view(text_el: str, text_en: str) -> ui.LayoutView:
-    container = ui.Container(accent_colour=discord.Colour.orange())
+    container = ui.Container(accent_colour=discord.Colour.blue())
     container.add_item(ui.TextDisplay(text_el))
     container.add_item(ui.Separator(spacing=discord.SeparatorSpacing.small))
     container.add_item(ui.TextDisplay(text_en))

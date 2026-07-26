@@ -60,6 +60,21 @@ SELECT_CUSTOM_ID = "ticket_select"
 CLOSE_CUSTOM_ID = "ticket_close"
 PING_CUSTOM_ID = "ticket_ping"
 
+# Αντιστοίχιση ticket type -> όνομα custom emoji στο emojis.py (κατηγορία "ticket").
+# Αν δεν έχει ρυθμιστεί custom emoji (ID == 0), πέφτει πίσω στο config.TICKET_TYPES[...]["emoji"] (unicode).
+TICKET_TYPE_EMOJI_KEY = {
+    "owner": "owner",
+    "contact_support": "support",
+    "partnership": "partnership",
+    "buy": "buy",
+    "seller": "seller",
+}
+
+
+def _ticket_type_emoji(key: str, ttype: dict):
+    custom = emoji("ticket", TICKET_TYPE_EMOJI_KEY.get(key, ""))
+    return custom or ttype.get("emoji")
+
 
 def _lang_label(ticket_type: dict, lang: str) -> str:
     return ticket_type[f"label_{lang}"]
@@ -114,7 +129,7 @@ def build_category_panel(lang: str) -> ui.LayoutView:
                 label=_lang_label(ttype, lang),
                 description=ttype[f"desc_{lang}"][:100],
                 value=key,
-                emoji=ttype.get("emoji"),
+                emoji=_ticket_type_emoji(key, ttype),
             )
             for key, ttype in config.TICKET_TYPES.items()
         ],
@@ -133,9 +148,9 @@ def build_channel_panel(lang: str, ticket_id: int, ttype_key: str, opener: disco
     ttype = config.TICKET_TYPES[ttype_key]
     label = _lang_label(ttype, lang)
 
-    container = ui.Container(accent_colour=discord.Colour.gold())
+    container = ui.Container(accent_colour=discord.Colour.blue())
 
-    text = t["channel_intro"].format(emoji=ttype.get("emoji", "🎫"), type_label=label, user=opener.mention)
+    text = t["channel_intro"].format(emoji=_ticket_type_emoji(ttype_key, ttype) or "🎫", type_label=label, user=opener.mention)
     if config.TICKET_CHANNEL_THUMBNAIL_URL:
         section = ui.Section(accessory=ui.Thumbnail(media=config.TICKET_CHANNEL_THUMBNAIL_URL))
         section.add_item(ui.TextDisplay(text))

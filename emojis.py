@@ -37,10 +37,10 @@ EMOJIS = {
         "members": "<:members:1530490177531674725>",
     },
     "review": {
-        "review": "<:review:1530856651135914085>",
-        "star": "<:star:1530693543880949942>",
+        "review": "<:review:1530911150156546068>",
+        "star": "<:star:1530911150156546068>",
         "star_empty": "<:star_empty:>",
-        "submit": "<:submit:1530529572389523556>",
+        "submit": "<:submit:1530911150156546068>",
     },
     "suggestion": {
         "suggestion": "<:suggestion:1530857462989590579>",

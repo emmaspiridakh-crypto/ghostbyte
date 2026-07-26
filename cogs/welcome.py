@@ -50,7 +50,7 @@ class Welcome(commands.Cog):
         view.add_item(container)
 
         try:
-            await channel.send(content=member.mention, view=view, allowed_mentions=discord.AllowedMentions(users=True))
+            await channel.send(view=view, allowed_mentions=discord.AllowedMentions(users=True))
         except discord.HTTPException:
             pass
 

@@ -8,6 +8,8 @@ config.py
 
 import os
 
+from emojis import emoji as _emoji
+
 # ── Bot ──────────────────────────────────────────────────────────────────────
 BOT_TOKEN = os.getenv("BOT_TOKEN", "PUT_YOUR_BOT_TOKEN_HERE")
 PREFIX = "!"
@@ -106,7 +108,7 @@ SHOP_NAME = "GhostByte"
 TOS_BANNER_URL = "https://i.imgur.com/YSKTluU.jpeg"
 
 TOS_TEXT_EL = (
-    f"## 📋 Όροι Χρήσης — {SHOP_NAME}\n\n"
+    f"## {_emoji('tos', 'document') or '📋'} Όροι Χρήσης — {SHOP_NAME}\n\n"
     "• Οι κανόνες μπορούν να αλλάξουν ανά πάσα ώρα και στιγμή. Εσείς οι ίδιοι είστε υποχρεωμένοι να διαβάζετε τους κανόνες συστηματικά.\n\n"
     "• Οι τιμές και οι όροι μπορούν να αλλάξουν ανά πάσα στιγμή χωρίς προηγούμενη ειδοποίηση.\n\n"
     "• Διατηρούμε το δικαίωμα να αρνηθούμε την παροχή οποιασδήποτε υπηρεσίας σε οποιονδήποτε, οποτεδήποτε.\n\n"
@@ -119,7 +121,7 @@ TOS_TEXT_EL = (
     "• Οι παραπάνω κανόνες ισχύουν και για τα Exchange ToS."
 )
 TOS_TEXT_EN = (
-    f"## 📋 Terms of Service — {SHOP_NAME}\n\n"
+    f"## {_emoji('tos', 'document') or '📋'} Terms of Service — {SHOP_NAME}\n\n"
     "• These terms may be updated at any time without notice. You are responsible for reviewing them periodically.\n\n"
     "• Prices and terms may be changed at any time without prior notice.\n\n"
     "• We reserve the right to refuse service to anyone, at any time.\n\n"
@@ -132,7 +134,7 @@ TOS_TEXT_EN = (
     "• These terms also apply to the Exchange ToS."
 )
 EXCHANGE_TOS_TEXT_EL = (
-    f"## 🔄 Όροι Ανταλλαγής (Exchange TOS) — {SHOP_NAME}\n\n"
+    f"## {_emoji('tos', 'exchange') or '🔄'} Όροι Ανταλλαγής (Exchange TOS) — {SHOP_NAME}\n\n"
     "• Τα χρήματα πρέπει να σταλθούν στο σωστό email και επίσης να τσεκάρετε το email που στείλατε για να λάβετε τα χρήματα. Είστε υποχρεωμένοι να διπλό τσεκάρετε το email που σας έχει στείλει ο exchanger και το email που στείλατε.\n\n"
     "• Σε περίπτωση που στείλετε παραπάνω χρήματα ο exchanger δεν είναι αναγκασμένος να επιστρέψει το extra ποσό.\n\n"
     "**PayPal Rules**\n"
@@ -152,7 +154,7 @@ EXCHANGE_TOS_TEXT_EL = (
     "**Με την πραγματοποίηση οποιασδήποτε συναλλαγής ανταλλαγής, ο χρήστης αναγνωρίζει και αποδέχεται πλήρως όλους τους κινδύνους που σχετίζονται με τη μέθοδο πληρωμής που επιλέγει να χρησιμοποιήσει.**"
 )
 EXCHANGE_TOS_TEXT_EN = (
-    f"## 🔄 Exchange Terms of Service — {SHOP_NAME}\n\n"
+    f"## {_emoji('tos', 'exchange') or '🔄'} Exchange Terms of Service — {SHOP_NAME}\n\n"
     "• All parties are solely responsible for verifying the accuracy of the recipient's email address, wallet address, or any other payment details before initiating a transaction.\n\n"
     "• Users are required to double-check both the payment information provided by the exchanger and the payment information they submit for receiving funds.\n\n"
     "• In the event that a user sends funds in excess of the agreed amount, the exchanger shall not be obligated to refund or return any excess funds.\n\n"

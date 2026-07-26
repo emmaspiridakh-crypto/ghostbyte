@@ -47,6 +47,10 @@ EMOJIS = {
         "upvote": "<:upvote:1530489269339291689>",
         "downvote": "<:downvote:1530489237831548960>",
     },
+    "tos": {
+        "document": "<:document:1530909736537690205>",
+        "exchange": "<:exchange:1530692764852027574>",
+    },
     "logs": {
         "voice_join": "<a:voice_join:1530489063662944336>",
         "voice_leave": "<a:voice_leave:1530489082327859220>",

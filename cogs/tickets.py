@@ -295,7 +295,7 @@ class Tickets(commands.Cog):
 
         panel = build_channel_panel(lang, ticket_id, ttype_key, user)
         try:
-            await channel.send(content=user.mention, view=panel, allowed_mentions=discord.AllowedMentions(users=True))
+            await channel.send(view=panel, allowed_mentions=discord.AllowedMentions(users=True))
         except discord.HTTPException:
             pass
 

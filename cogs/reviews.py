@@ -29,7 +29,7 @@ STAR_SELECT_ID = "review_stars"
 
 
 def build_review_panel() -> ui.LayoutView:
-    container = ui.Container(accent_colour=discord.Colour.gold())
+    container = ui.Container(accent_colour=discord.Colour.blue())
     if config.REVIEW_PANEL_BANNER_URL:
         container.add_item(ui.MediaGallery(discord.MediaGalleryItem(media=config.REVIEW_PANEL_BANNER_URL)))
     container.add_item(ui.TextDisplay(
@@ -48,7 +48,7 @@ def build_review_panel() -> ui.LayoutView:
 
 
 def build_star_select_view() -> ui.LayoutView:
-    container = ui.Container(accent_colour=discord.Colour.gold())
+    container = ui.Container(accent_colour=discord.Colour.blue())
     container.add_item(ui.TextDisplay(f"## {emoji('review', 'star') or '⭐'} Πόσα αστέρια θα έδινες;"))
     select = ui.Select(
         placeholder="Επίλεξε βαθμολογία (1-5)",

@@ -48,10 +48,15 @@ async def on_ready():
     try:
         if config.GUILD_ID:
             guild_obj = discord.Object(id=config.GUILD_ID)
+            # ΣΗΜΑΝΤΙΚΟ: τα commands ορίζονται global (χωρίς guild=...), άρα
+            # πρέπει πρώτα να αντιγραφούν στο guild tree πριν το sync,
+            # αλλιώς κάνει sync ένα ΑΔΕΙΟ guild-specific tree (0 commands).
+            bot.tree.copy_global_to(guild=guild_obj)
             synced = await bot.tree.sync(guild=guild_obj)
+            print(f"[Bot] Sync-άρισε {len(synced)} slash commands στο guild {config.GUILD_ID} (άμεσα ορατά).")
         else:
             synced = await bot.tree.sync()
-        print(f"[Bot] Sync-άρισε {len(synced)} slash commands.")
+            print(f"[Bot] Sync-άρισε {len(synced)} slash commands global (μπορεί να πάρει έως 1 ώρα να φανούν).")
     except Exception as e:
         print(f"[Bot] Σφάλμα στο sync: {e}")
 

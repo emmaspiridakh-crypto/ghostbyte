@@ -24,7 +24,7 @@ VERIFY_CUSTOM_ID = "verify_btn"
 
 
 def build_verify_panel() -> ui.LayoutView:
-    container = ui.Container(accent_colour=discord.Colour.green())
+    container = ui.Container(accent_colour=discord.Colour.blue())
 
     if config.VERIFY_BANNER_URL:
         container.add_item(ui.MediaGallery(discord.MediaGalleryItem(media=config.VERIFY_BANNER_URL)))

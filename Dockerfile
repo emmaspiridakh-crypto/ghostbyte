@@ -13,6 +13,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+# ΚΡΙΣΙΜΟ: χωρίς αυτό, τα print() του bot κάθονται σε buffer και ΔΕΝ
+# εμφανίζονται ποτέ στα Render logs (μόνο η έξοδος του Flask φαίνεται).
+ENV PYTHONUNBUFFERED=1
+
 # Το Render (ή όποιο host) περνάει PORT env var· ο Flask keep-alive το διαβάζει.
 ENV PORT=1000
 EXPOSE 1000

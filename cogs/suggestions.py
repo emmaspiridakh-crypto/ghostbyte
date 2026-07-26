@@ -27,7 +27,7 @@ DOWNVOTE_ID = "sugg_down"
 
 
 def build_suggestion_view(suggestion_id: int, author_mention: str, content: str, up: int, down: int) -> ui.LayoutView:
-    container = ui.Container(accent_colour=discord.Colour.blurple())
+    container = ui.Container(accent_colour=discord.Colour.blue())
     container.add_item(ui.TextDisplay(
         f"## {emoji('suggestion', 'suggestion') or '💡'} Suggestion #{suggestion_id}\n"
         f"**Από:** {author_mention}\n\n{content}"

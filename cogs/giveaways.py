@@ -728,15 +728,25 @@ class Giveaways(commands.Cog):
             await interaction.response.send_message("Δεν υπάρχουν ενεργά giveaways.", ephemeral=True)
             return
 
+        LIST_CAP = 10
+
         container = ui.Container(accent_colour=discord.Colour.gold())
-        lines = [f"## {emoji('giveaway','giveaway')} Ενεργά Giveaways\n"]
-        for gw in active:
-            lines.append(
-                f"**`#{gw['id']}`** — {gw['prize']} | "
-                f"Λήγει: {_fmt_dt(gw['end_time'])} | "
-                f"Συμμετοχές: {len(gw['entries'])}"
-            )
-        container.add_item(ui.TextDisplay("\n".join(lines)))
+        container.add_item(ui.TextDisplay(f"## {emoji('giveaway','giveaway')} Ενεργά Giveaways"))
+        container.add_item(ui.Separator(spacing=discord.SeparatorSpacing.small))
+
+        shown = active[:LIST_CAP]
+        for i, gw in enumerate(shown):
+            container.add_item(ui.TextDisplay(
+                f"**`#{gw['id']}`** — {gw['prize']}\n"
+                f"Λήγει: {_fmt_dt(gw['end_time'])} | Συμμετοχές: {len(gw['entries'])}"
+            ))
+            if i < len(shown) - 1:
+                container.add_item(ui.Separator(spacing=discord.SeparatorSpacing.small))
+
+        if len(active) > LIST_CAP:
+            container.add_item(ui.Separator(spacing=discord.SeparatorSpacing.small))
+            container.add_item(ui.TextDisplay(f"*... και {len(active) - LIST_CAP} ακόμα*"))
+
         view = ui.LayoutView(timeout=None)
         view.add_item(container)
         await interaction.response.send_message(view=view, ephemeral=True)
